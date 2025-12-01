@@ -1,0 +1,44 @@
+# Safrochain Validator .gitignore
+
+# Data directory (contains sensitive information and large files)
+data/
+!.gitkeep
+
+# Environment files
+.env
+
+# Log files
+*.log
+
+# Docker
+.dockerignore
+
+# IDE files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Backup files
+*.bak
+*.backup
+
+# Build artifacts
+*.o
+*.so
+*.dll
+*.exe
+
+# Validator configuration files
+validator.json

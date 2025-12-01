@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  safrochain-node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: safrochain/safrochaind:local
+    container_name: safrochain-validator
+    restart: unless-stopped
+    command:
+      - "start"
+      - "--home=/data"
+    ports:
+      - "${SAFROCHAIN_P2P_PORT:-26656}:26656"   # P2P
+      - "${SAFROCHAIN_RPC_PORT:-26657}:26657"   # RPC
+      - "${SAFROCHAIN_API_PORT:-1317}:1317"     # API
+      - "${SAFROCHAIN_GRPC_PORT:-9090}:9090"    # gRPC
+    volumes:
+      - ./data:/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 65535
+        hard: 65535
